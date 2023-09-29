@@ -6,7 +6,7 @@ app = Flask(__name__)
 # Function to create a database and table if they don't exist
 def create_database_table():
     db = mysql.connector.connect(
-        host="10.0.2.4:3306",
+        host="bjgomes.mysql.database.azure.com",
         user="bjgomes",
         passwd="0987^%$#poiuYTRE",
         ssl_ca= "C:\\Users\\brian\\Downloads\\DigiCertGlobalRootCA.crt(2).pem"
@@ -24,7 +24,7 @@ create_database_table()
 def home():
     # Establish a new connection and cursor
     db = mysql.connector.connect(
-        host="10.0.2.4:3306",
+        host="bjgomes.mysql.database.azure.com",
         user="bjgomes",
         passwd="0987^%$#poiuYTRE",
         database="to_do_list",
@@ -51,10 +51,11 @@ def add_item():
     
     # Establish a new connection and cursor
     db = mysql.connector.connect(
-        host="10.0.2.4:3306",
+        host="bjgomes.mysql.database.azure.com",
         user="bjgomes",
         passwd="0987^%poIU",
-        database="to_do_list"
+        database="to_do_list",
+        ssl_ca= "C:\\Users\\brian\\Downloads\\DigiCertGlobalRootCA.crt(2).pem"
     )
     cursor = db.cursor()
     
