@@ -1,15 +1,14 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 import mysql.connector
 
-app = Flask(__name__)
+
 
 # Function to create a database and table if they don't exist
 def create_database_table():
     db = mysql.connector.connect(
         host="bjgomes.mysql.database.azure.com",
         user="bjgomes",
-        passwd="0987^%$#poiuYTRE",
-        ssl_ca= "C:\\Users\\brian\\Downloads\\DigiCertGlobalRootCA.crt(2).pem"
+        passwd="0987^%$#poiuYTRE"
     )
     cursor = db.cursor()
     cursor.execute("CREATE DATABASE IF NOT EXISTS to_do_list")
@@ -20,6 +19,8 @@ def create_database_table():
 # Initialize the database and table
 create_database_table()
 
+app = Flask(__name__)
+
 @app.route('/')
 def home():
     # Establish a new connection and cursor
@@ -27,8 +28,7 @@ def home():
         host="bjgomes.mysql.database.azure.com",
         user="bjgomes",
         passwd="0987^%$#poiuYTRE",
-        database="to_do_list",
-        ssl_ca= "C:\\Users\\brian\\Downloads\\DigiCertGlobalRootCA.crt(2).pem"
+        database="to_do_list"
     )
     cursor = db.cursor()
 
@@ -53,9 +53,8 @@ def add_item():
     db = mysql.connector.connect(
         host="bjgomes.mysql.database.azure.com",
         user="bjgomes",
-        passwd="0987^%poIU",
-        database="to_do_list",
-        ssl_ca= "C:\\Users\\brian\\Downloads\\DigiCertGlobalRootCA.crt(2).pem"
+        passwd="0987^%$#poiuYTRE",
+        database="to_do_list"
     )
     cursor = db.cursor()
     
@@ -68,4 +67,4 @@ def add_item():
     return redirect(url_for('home'))
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000)
