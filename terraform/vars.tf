@@ -1,25 +1,12 @@
-#resourceGroup
-variable "resourceGroupName" {
-    type = string
-    description = "Resource Group Name"
-}
-variable "location" {
-    type = string
-    description = "Location"
-}
-variable "vnetName" {
-    type = string
-    description = "VNET name"
-}
 variable "networkAddress" {
-    type = string
-    description = "starting cidr block for vnet"
+  type = string
+  default = "10.0.0.0"
 }
-variable "network_address_mask" {
+
+variable "networkAddressMask" {
     type = number
     description = "(optional) describe your variable"
+    default = 16
 }
-variable "subnetConfig" {
-    type = map(any)
-    description = "(optional) describe your variable"
-}
+
+
