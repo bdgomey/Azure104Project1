@@ -29,4 +29,4 @@ docker push <your dockerhub username>/<appName>
 ```
 make sure to use your dockerhub username you had when you created the dockerhub account. 
 
-### Step 5. create a new web app in azure and make sure that it uses the container image you just created.  You will need to create a new resource group and a new app service plan.  You need to make sure that the service plan you use can have vnet integration enabled (free tier does not allow this)
+### Step 5. create a new web app in azure and make sure that it uses the container image you just created.  You will need to create a new app service plan.  You need to make sure that the service plan you use can have vnet integration enabled (free tier does not allow this)
