@@ -6,9 +6,9 @@ import mysql.connector
 # Function to create a database and table if they don't exist
 def create_database_table():
     db = mysql.connector.connect(
-        host="bjgomes.mysql.database.azure.com",
-        user="bjgomes",
-        passwd="0987^%$#poiuYTRE"
+        host="",
+        user="",
+        passwd=""
     )
     cursor = db.cursor()
     cursor.execute("CREATE DATABASE IF NOT EXISTS to_do_list")
@@ -25,9 +25,9 @@ app = Flask(__name__)
 def home():
     # Establish a new connection and cursor
     db = mysql.connector.connect(
-        host="bjgomes.mysql.database.azure.com",
-        user="bjgomes",
-        passwd="0987^%$#poiuYTRE",
+        host="",
+        user="",
+        passwd="",
         database="to_do_list"
     )
     cursor = db.cursor()
@@ -51,9 +51,9 @@ def add_item():
     
     # Establish a new connection and cursor
     db = mysql.connector.connect(
-        host="bjgomes.mysql.database.azure.com",
-        user="bjgomes",
-        passwd="0987^%$#poiuYTRE",
+        host="",
+        user="",
+        passwd="",
         database="to_do_list"
     )
     cursor = db.cursor()
