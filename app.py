@@ -1,19 +1,23 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 import mysql.connector
 
-
+user="bjones"
+host="bjones.mysql.database.azure.com"
+passwd="Project23!"
+database="to_do_list"
 
 # Function to create a database and table if they don't exist
 def create_database_table():
     db = mysql.connector.connect(
-        host="",
-        user="",
-        passwd=""
+        host=host,
+        user=user,
+        passwd=passwd
     )
     cursor = db.cursor()
-    cursor.execute("CREATE DATABASE IF NOT EXISTS to_do_list")
-    cursor.execute("USE to_do_list")
-    cursor.execute("CREATE TABLE IF NOT EXISTS tasks (id INT AUTO_INCREMENT PRIMARY KEY, task VARCHAR(255), status VARCHAR(255))")
+    cursor.execute(f"CREATE DATABASE IF NOT EXISTS ${database}")
+    cursor.execute(f"USE ${database}")
+    cursor.execute("CREATE TABLE IF NOT EXISTS tasks (id INT AUTO_INCREMENT PRIMARY KEY, task VARCHAR(255), status VARCHAR(255))")    
+    
     db.close()
 
 # Initialize the database and table
@@ -25,10 +29,10 @@ app = Flask(__name__)
 def home():
     # Establish a new connection and cursor
     db = mysql.connector.connect(
-        host="",
-        user="",
-        passwd="",
-        database="to_do_list"
+        host=host,
+        user=user,
+        passwd=passwd,
+        database=database
     )
     cursor = db.cursor()
 
@@ -42,29 +46,28 @@ def home():
     db.close()  # Close the database connection
 
     return render_template('index.html', tasks=tasks)
-
 # Write to the database on /add path
 @app.route('/add', methods=['POST'])
 def add_item():
     task = request.form['task']
     status = request.form['status']
-    
+
     # Establish a new connection and cursor
     db = mysql.connector.connect(
-        host="",
-        user="",
-        passwd="",
-        database="to_do_list"
+        host=host,
+        user=user,
+        passwd=passwd,
+        database=database
     )
     cursor = db.cursor()
-    
+
     cursor.execute("INSERT INTO tasks (task, status) VALUES (%s, %s)", (task, status))
     db.commit()
-    
+
     cursor.close()  # Close the cursor
     db.close()  # Close the database connection
-    
+
     return redirect(url_for('home'))
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    app.run()
